@@ -18,7 +18,8 @@ root.withdraw()
 
 all_files = []
 file_directory = ""
-ex = input('1 or 2')
+ex = input('select 1 if you need to aggregate the csv file.\n Select 2 if you want to append the xlsx file into another.')
+print()
 if ex == '1':
     while not all_files and not file_directory:
         file_directory = filedialog.askdirectory()
