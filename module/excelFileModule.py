@@ -27,13 +27,14 @@ def aggregate_csv_files(file_name, all_filenames):
 
 
 def merge_excel_files(main_file, file_to_merge):
-    writer = pd.ExcelWriter(main_file, engine='openpyxl')
+    book = load_workbook(main_file)
+    writer = pd.ExcelWriter(main_file, engine='openpyxl', mode='a')
 
     df_to_merge = pd.read_excel(
         file_to_merge, index_col=0, sheet_name=None,)
 
     # try to open an existing workbook
-    writer.book = load_workbook(main_file)
+    writer.book = book
     # copy existing sheets
     writer.sheets = dict((ws.title, ws) for ws in writer.book.worksheets)
     # read existing file
